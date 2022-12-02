@@ -43,3 +43,4 @@ class Order(models.Model): #this is the in between first view of job and complet
 
     def __str__(self):
         return self.status
+

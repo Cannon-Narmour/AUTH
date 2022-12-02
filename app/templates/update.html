@@ -1,0 +1,54 @@
+{% extends "main.html" %} {% block content%}
+
+<h1>Ambassadors!</h1>
+
+<div class="container">
+  <h4>Update Ambassador Profile</h4>
+  <hr />
+  <form action="/update/{{ambassadors.id}}" method="POST">
+    {%csrf_token%}
+    <div class="form-group">
+      <label for="">Name</label>
+      <input
+        type="text"
+        name="name"
+        value="{{ambassador.name}}"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="">Phone</label>
+      <input
+        type="text"
+        name="phone"
+        value="{{ambassador.phone}}"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="">Email</label>
+      <input
+        type="text"
+        name="email"
+        value="{{ambassador.email}}"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="">Skill</label>
+      <input
+        type="text"
+        name="skill"
+        value="{{ambassador.skill}}"
+        class="form-control"
+      />
+    </div>
+    <br />
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Submit</button>
+      <a href="{% url 'detail' %}" class="btn btn-info">Details</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

@@ -17,9 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from app.views import *
 urlpatterns = [
-    path("", home),
-    path("jobs/", jobs),
-    path("ambassadors/", ambassadors),
-    path("dash/", dashboard),
+    path("", home, name="home"),
+    path("jobs/", jobs, name="jobs"),
+    path("ambassadors/", ambassadors, name="ambassadors"),
+    path("dash/", dashboard, name="dashboard"),
     path("admin/", admin.site.urls),
+    path("detail/", detail, name= "detail"),
+    path("update/<int:id>", update, name= "update"),
+    path("delete/<int:id>", delete, name= "delete")
 ]
