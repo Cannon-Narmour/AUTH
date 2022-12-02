@@ -19,6 +19,7 @@ from app.views import *
 urlpatterns = [
     path("", home),
     path("jobs/", jobs),
-    path("customers/", customers),
+    path("ambassadors/", ambassadors),
+    path("dash/", dashboard),
     path("admin/", admin.site.urls),
 ]

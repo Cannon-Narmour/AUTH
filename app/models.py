@@ -1,10 +1,10 @@
 from django.db import models
 
-class Customer(models.Model):
+class Ambassador(models.Model):
     name= models.CharField(max_length=200,null=True)
     phone= models.CharField(max_length=200,null=True)
     email= models.CharField(max_length=200,null=True)
-    date= models.DateTimeField(auto_now_add=True,null=True)
+    skill= models.CharField(max_length=1,null=True)
 
     # name
     def __str__(self):
@@ -12,28 +12,34 @@ class Customer(models.Model):
 
 class Job(models.Model):
     CATEGORY = (
-        ("Accepted","Accepted" ),
-        ("Declined","Declined" ),
+        ("Video","Video" ),
+        ("Native","Native" ),
+        ("Mobile","Mobile" ),
+        ("Display","Display" ),
+
     )
-    name= models.CharField(max_length=200,null=True)
-    price= models.FloatField(null=True)
+    job_name= models.CharField(max_length=200,null=True)
+    pay= models.FloatField(null=True)
     category= models.CharField(max_length=200,null=True, choices=CATEGORY)
     job_description= models.CharField(max_length=200,null=True, blank=True)
-    date= models.DateTimeField(auto_now_add=True,null=True)
+    date_added= models.DateTimeField(auto_now_add=True,null=True)
+    job_id= models.IntegerField(null=True)
 
-    def str(self):
-        return self.name
+    def __str__(self):
+        return self.job_name
 
-class Order(models.Model):
+class Order(models.Model): #this is the in between first view of job and completion
     STATUS = (
         ("Recently Received","Recently Received" ),
         ("Working", "Working"),
         ("Awaiting Instructions","Awaiting Instructions"),
+        ("Finished", "Finished"),
+
     )
-    customer = models.ForeignKey(Customer, null=True, on_delete=models.SET_NULL)
+    ambassador = models.ForeignKey(Ambassador, null=True, on_delete=models.SET_NULL)
     job = models.ForeignKey(Job, null=True, on_delete=models.SET_NULL) 
     date= models.DateTimeField(auto_now_add=True,null=True)
     status= models.CharField(max_length=200,null=True, choices=STATUS)
 
-    def str(self):
-        return self.job.name
+    def __str__(self):
+        return self.status

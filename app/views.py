@@ -4,18 +4,18 @@ from .models import *
 # Create your views here.
 
 def home(request):
-    return render(request, "index.html")
+    return render(request, "main.html")
 
-def customers(request):
-    return render(request, "customers.html")
+def ambassadors(request):
+    return render(request, "ambassadors.html")
 
 
 def dashboard (request):
     orders = Order.objects.all()
-    customers = Customer.objects.all()
+    ambassadors = Ambassador.objects.all()
 
     #TOTAL
-    t_customers = customers.count()
+    t_ambassadors = ambassadors.count()
     t_orders = orders.count()
 
     #Order Information
@@ -23,7 +23,7 @@ def dashboard (request):
     pending = orders.filter(status="Pending").count()
 
     #Dict.
-    information = {"orders":orders ,"customers":customers, "t_orders":t_orders, "completed":completed, "pending":pending}
+    information = {"orders":orders ,"ambassadors":ambassadors, "t_orders":t_orders, "completed":completed, "pending":pending}
 
     return render(request, "dashboard.html",information)
 
